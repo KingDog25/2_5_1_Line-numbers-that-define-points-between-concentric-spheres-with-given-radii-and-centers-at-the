@@ -1,0 +1,102 @@
+/*Условие: Дана матрица из 3 столбцов и 10 строк. Элементы каждой строки представляют координаты одной из 10 точек трехмерного пространства.
+Отпечатать номера строк, которыми заданы точки, находящимися между концентрическими сферами с заданными радиусами и центрами в начале координат*/
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace _23_variant_CSarp_2_5_1
+{
+    public partial class ConsentricSpheres : Form
+    {
+        public ConsentricSpheres()
+        {
+            InitializeComponent();
+        }
+
+        private class Sphere
+        {
+	    int[] cordCenter = new int[3] { 0, 0, 0 };                               //координаты центра сферы	
+            float R = 1, r = 1;                                                 //радиусы сфер
+            float summSquare = 0;                                               //для подсчета левой части каждой строки X^2 + Y^2 +Z^2 = R^2
+            int countPoints = 0;                                                //число точек между концентрическими сферами
+/*
+            float calcConcSpheres(int x, int y, int z)
+            {                                                                    //находится ли точка между концентрическими сферами
+                    for (int j = 0; j <2; j++)
+                    {
+                        summSquare += arrXYZ[j][i] * arrXYZ[j][i];
+                    }
+                    if (summSquare < R * R && summSquare > r * r)
+                    {                               //Если сумма квадратов координаты точки меньше, чем R и больше чем r
+                        countPoints++;
+                        cout << "Точка " << i << " находится между концентрическими сферами" << endl;
+                    }
+                    summSquare = 0;
+                return summSquare;
+            }
+*/
+
+
+            private void labelInputEl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void radioButtonHandle_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxInputEl.Enabled = radioButtonHandle.Checked;                             //сделать текстбокс активным
+        }
+
+        private void radioButtonRandom_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+        
+        private void buttonInput_Click(object sender, EventArgs e)
+        {
+            dataGridView1.RowCount = 10;                             //кол-во строк
+            dataGridView1.ColumnCount = 3;                          //столбцов
+            dataGridView1.Rows[0].HeaderCell.Value = "Кооординаты X,Y,Z";
+            dataGridView1.Columns[0].HeaderText = "X";
+            dataGridView1.Columns[1].HeaderText = "Y";
+            dataGridView1.Columns[2].HeaderText = "Z";
+            int rowsCount = dataGridView1.RowCount;
+            int columnCount = dataGridView1.ColumnCount = 3;
+            int[,] tableXYZ = new int[rowsCount, columnCount];
+            Random rnd = new Random();                                         
+
+
+            for (int i = 0; i < rowsCount; i++)
+            {
+
+                for (int j = 0; j < columnCount; j++)                                         //заполняем значения X
+                {
+                    tableXYZ[i, j] = rnd.Next(-50, 50);                         //заполняем массив случайными значениями координат
+                    dataGridView1.Rows[i].Cells[j].Value = tableXYZ[i, j];
+                }
+            }
+        }
+
+
+
+
+
+
+
+    }
+}
